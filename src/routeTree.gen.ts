@@ -13,6 +13,7 @@ import { Route as SobreRouteImport } from './routes/sobre'
 import { Route as PerguntasFrequentesRouteImport } from './routes/perguntas-frequentes'
 import { Route as InformacoesJuridicasRouteImport } from './routes/informacoes-juridicas'
 import { Route as DadosProfissionaisRouteImport } from './routes/dados-profissionais'
+import { Route as AvisoLegalRouteImport } from './routes/aviso-legal'
 import { Route as ArtigosRouteImport } from './routes/artigos'
 import { Route as AreasDeAtuacaoRouteImport } from './routes/areas-de-atuacao'
 import { Route as IndexRouteImport } from './routes/index'
@@ -37,6 +38,11 @@ const DadosProfissionaisRoute = DadosProfissionaisRouteImport.update({
   path: '/dados-profissionais',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AvisoLegalRoute = AvisoLegalRouteImport.update({
+  id: '/aviso-legal',
+  path: '/aviso-legal',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ArtigosRoute = ArtigosRouteImport.update({
   id: '/artigos',
   path: '/artigos',
@@ -57,6 +63,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/areas-de-atuacao': typeof AreasDeAtuacaoRoute
   '/artigos': typeof ArtigosRoute
+  '/aviso-legal': typeof AvisoLegalRoute
   '/dados-profissionais': typeof DadosProfissionaisRoute
   '/informacoes-juridicas': typeof InformacoesJuridicasRoute
   '/perguntas-frequentes': typeof PerguntasFrequentesRoute
@@ -66,6 +73,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/areas-de-atuacao': typeof AreasDeAtuacaoRoute
   '/artigos': typeof ArtigosRoute
+  '/aviso-legal': typeof AvisoLegalRoute
   '/dados-profissionais': typeof DadosProfissionaisRoute
   '/informacoes-juridicas': typeof InformacoesJuridicasRoute
   '/perguntas-frequentes': typeof PerguntasFrequentesRoute
@@ -76,6 +84,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/areas-de-atuacao': typeof AreasDeAtuacaoRoute
   '/artigos': typeof ArtigosRoute
+  '/aviso-legal': typeof AvisoLegalRoute
   '/dados-profissionais': typeof DadosProfissionaisRoute
   '/informacoes-juridicas': typeof InformacoesJuridicasRoute
   '/perguntas-frequentes': typeof PerguntasFrequentesRoute
@@ -87,6 +96,7 @@ export interface FileRouteTypes {
     | '/'
     | '/areas-de-atuacao'
     | '/artigos'
+    | '/aviso-legal'
     | '/dados-profissionais'
     | '/informacoes-juridicas'
     | '/perguntas-frequentes'
@@ -96,6 +106,7 @@ export interface FileRouteTypes {
     | '/'
     | '/areas-de-atuacao'
     | '/artigos'
+    | '/aviso-legal'
     | '/dados-profissionais'
     | '/informacoes-juridicas'
     | '/perguntas-frequentes'
@@ -105,6 +116,7 @@ export interface FileRouteTypes {
     | '/'
     | '/areas-de-atuacao'
     | '/artigos'
+    | '/aviso-legal'
     | '/dados-profissionais'
     | '/informacoes-juridicas'
     | '/perguntas-frequentes'
@@ -115,6 +127,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AreasDeAtuacaoRoute: typeof AreasDeAtuacaoRoute
   ArtigosRoute: typeof ArtigosRoute
+  AvisoLegalRoute: typeof AvisoLegalRoute
   DadosProfissionaisRoute: typeof DadosProfissionaisRoute
   InformacoesJuridicasRoute: typeof InformacoesJuridicasRoute
   PerguntasFrequentesRoute: typeof PerguntasFrequentesRoute
@@ -151,6 +164,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DadosProfissionaisRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/aviso-legal': {
+      id: '/aviso-legal'
+      path: '/aviso-legal'
+      fullPath: '/aviso-legal'
+      preLoaderRoute: typeof AvisoLegalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/artigos': {
       id: '/artigos'
       path: '/artigos'
@@ -179,6 +199,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AreasDeAtuacaoRoute: AreasDeAtuacaoRoute,
   ArtigosRoute: ArtigosRoute,
+  AvisoLegalRoute: AvisoLegalRoute,
   DadosProfissionaisRoute: DadosProfissionaisRoute,
   InformacoesJuridicasRoute: InformacoesJuridicasRoute,
   PerguntasFrequentesRoute: PerguntasFrequentesRoute,
