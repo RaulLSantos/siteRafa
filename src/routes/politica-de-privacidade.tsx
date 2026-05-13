@@ -4,7 +4,7 @@ import { PageHeader } from "@/components/page-header";
 export const Route = createFileRoute("/politica-de-privacidade")({
   head: () => ({
     meta: [
-      { title: "Política de privacidade | Dra. [Nome da Advogada]" },
+      { title: "Política de privacidade | Dra. Rafaella Borges" },
       { name: "description", content: "Política de privacidade institucional do site." },
     ],
     links: [{ rel: "canonical", href: "/politica-de-privacidade" }],

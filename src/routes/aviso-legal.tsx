@@ -4,7 +4,7 @@ import { PageHeader } from "@/components/page-header";
 export const Route = createFileRoute("/aviso-legal")({
   head: () => ({
     meta: [
-      { title: "Aviso legal | Dra. [Nome da Advogada]" },
+      { title: "Aviso legal | Dra. Rafaella Borges" },
       { name: "description", content: "Aviso legal institucional do site." },
     ],
     links: [{ rel: "canonical", href: "/aviso-legal" }],
