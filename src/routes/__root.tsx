@@ -74,14 +74,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Dra. Rafaella Borges | Advocacia Individual" },
+      { title: "Dra. [Nome da Advogada] | Advocacia Individual em [Cidade/UF]" },
       {
         name: "description",
         content:
-          "Site institucional da Dra. Rafaella Borges, advogada com atuação profissional pautada pela ética, clareza, responsabilidade e atendimento jurídico individualizado.",
+          "Site institucional da Dra. [Nome da Advogada], advogada inscrita na OAB/[UF], com atuação jurídica pautada pela ética, clareza e responsabilidade profissional.",
       },
-      { name: "author", content: "Dra. Rafaella Borges" },
-      { property: "og:title", content: "Dra. Rafaella Borges | Advocacia Individual" },
+      { name: "author", content: "Dra. [Nome da Advogada]" },
+      { property: "og:title", content: "Dra. [Nome da Advogada] | Advocacia Individual em [Cidade/UF]" },
       {
         property: "og:description",
         content:
@@ -89,6 +89,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
+      { name: "twitter:title", content: "Dra. [Nome da Advogada] | Advocacia Individual em [Cidade/UF]" },
+      { name: "description", content: "A professional website showcasing an individual lawyer's expertise, ethics, and areas of practice." },
+      { property: "og:description", content: "A professional website showcasing an individual lawyer's expertise, ethics, and areas of practice." },
+      { name: "twitter:description", content: "A professional website showcasing an individual lawyer's expertise, ethics, and areas of practice." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/f854a483-ca49-48f9-88c2-ed5f3578fb81/id-preview-b5077802--c6943117-dafb-455d-bd88-2b79208db8ee.lovable.app-1778633260585.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/f854a483-ca49-48f9-88c2-ed5f3578fb81/id-preview-b5077802--c6943117-dafb-455d-bd88-2b79208db8ee.lovable.app-1778633260585.png" },
     ],
     links: [
       {
