@@ -7,9 +7,9 @@ export function SiteFooter() {
       <div className="mx-auto max-w-6xl px-6 py-14">
         <div className="grid gap-10 md:grid-cols-4">
           <div className="md:col-span-2">
-            <p className="font-serif text-lg text-primary">Dra. [Nome da Advogada]</p>
+            <p className="font-serif text-lg text-primary">Dra. Rafaella Borges</p>
             <p className="mt-1 text-sm text-muted-foreground">OAB/[UF] nº XXXXX</p>
-            <p className="mt-1 text-sm text-muted-foreground">[Cidade] / [UF]</p>
+            <p className="mt-1 text-sm text-muted-foreground">Cascavel / PR</p>
             <div className="gold-rule mt-5" />
             <p className="mt-5 max-w-md text-xs leading-relaxed text-muted-foreground">
               As informações disponibilizadas neste site possuem caráter exclusivamente
@@ -35,31 +35,26 @@ export function SiteFooter() {
             </p>
             <ul className="mt-4 space-y-2 text-sm text-foreground/80">
               <li>
-                <Link to="/sobre" className="hover:text-primary">
-                  Sobre
-                </Link>
+                <Link to="/sobre" className="hover:text-primary">Sobre</Link>
               </li>
               <li>
-                <Link to="/informacoes-juridicas" className="hover:text-primary">
-                  Informações Jurídicas
-                </Link>
+                <Link to="/areas-de-atuacao" className="hover:text-primary">Áreas de Atuação</Link>
               </li>
               <li>
-                <Link to="/politica-de-privacidade" className="hover:text-primary">
-                  Política de Privacidade
-                </Link>
+                <Link to="/contato" className="hover:text-primary">Contato</Link>
               </li>
               <li>
-                <Link to="/aviso-legal" className="hover:text-primary">
-                  Aviso Legal
-                </Link>
+                <Link to="/politica-de-privacidade" className="hover:text-primary">Política de Privacidade</Link>
+              </li>
+              <li>
+                <Link to="/aviso-legal" className="hover:text-primary">Aviso Legal</Link>
               </li>
             </ul>
           </div>
         </div>
 
         <div className="mt-12 flex flex-col gap-2 border-t border-border pt-6 text-xs text-muted-foreground md:flex-row md:items-center md:justify-between">
-          <p>© {year} Dra. [Nome da Advogada]. Todos os direitos reservados.</p>
+          <p>© {year} Dra. Rafaella Borges. Todos os direitos reservados.</p>
           <p>OAB/[UF] nº XXXXX</p>
         </div>
       </div>
