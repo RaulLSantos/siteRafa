@@ -4,11 +4,11 @@ import { PageHeader } from "@/components/page-header";
 export const Route = createFileRoute("/sobre")({
   head: () => ({
     meta: [
-      { title: "Sobre a advogada | Dra. [Nome da Advogada]" },
+      { title: "Sobre a advogada | Dra. Rafaella Borges" },
       {
         name: "description",
         content:
-          "Conheça a trajetória profissional, formação e valores da Dra. [Nome da Advogada], advogada inscrita na OAB/[UF].",
+          "Conheça a trajetória profissional, formação e valores da Dra. Rafaella Borges, advogada inscrita na OAB/[UF].",
       },
     ],
     links: [{ rel: "canonical", href: "/sobre" }],
@@ -22,7 +22,7 @@ function SobrePage() {
       <PageHeader
         eyebrow="Institucional"
         title="Sobre a advogada"
-        intro="A Dra. [Nome da Advogada] é advogada inscrita na OAB/[UF] nº XXXXX, com atuação voltada à orientação jurídica responsável e individualizada."
+        intro="A Dra. Rafaella Borges é advogada inscrita na OAB/[UF] nº XXXXX, com atuação voltada à orientação jurídica responsável e individualizada."
       />
 
       <section className="mx-auto max-w-4xl px-6 py-16 md:py-20">

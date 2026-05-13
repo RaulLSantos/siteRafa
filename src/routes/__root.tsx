@@ -74,14 +74,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Dra. [Nome da Advogada] | Advocacia Individual em [Cidade/UF]" },
+      { title: "Dra. Rafaella Borges | Advocacia Individual" },
       {
         name: "description",
         content:
-          "Site institucional da Dra. [Nome da Advogada], advogada inscrita na OAB/[UF], com atuação jurídica pautada pela ética, clareza e responsabilidade profissional.",
+          "Site institucional da Dra. Rafaella Borges, advogada com atuação profissional pautada pela ética, clareza, responsabilidade e atendimento jurídico individualizado.",
       },
-      { name: "author", content: "Dra. [Nome da Advogada]" },
-      { property: "og:title", content: "Dra. [Nome da Advogada] | Advocacia Individual" },
+      { name: "author", content: "Dra. Rafaella Borges" },
+      { property: "og:title", content: "Dra. Rafaella Borges | Advocacia Individual" },
       {
         property: "og:description",
         content:

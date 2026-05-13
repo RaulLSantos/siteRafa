@@ -11,11 +11,8 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SobreRouteImport } from './routes/sobre'
 import { Route as PoliticaDePrivacidadeRouteImport } from './routes/politica-de-privacidade'
-import { Route as PerguntasFrequentesRouteImport } from './routes/perguntas-frequentes'
-import { Route as InformacoesJuridicasRouteImport } from './routes/informacoes-juridicas'
-import { Route as DadosProfissionaisRouteImport } from './routes/dados-profissionais'
+import { Route as ContatoRouteImport } from './routes/contato'
 import { Route as AvisoLegalRouteImport } from './routes/aviso-legal'
-import { Route as ArtigosRouteImport } from './routes/artigos'
 import { Route as AreasDeAtuacaoRouteImport } from './routes/areas-de-atuacao'
 import { Route as IndexRouteImport } from './routes/index'
 
@@ -29,29 +26,14 @@ const PoliticaDePrivacidadeRoute = PoliticaDePrivacidadeRouteImport.update({
   path: '/politica-de-privacidade',
   getParentRoute: () => rootRouteImport,
 } as any)
-const PerguntasFrequentesRoute = PerguntasFrequentesRouteImport.update({
-  id: '/perguntas-frequentes',
-  path: '/perguntas-frequentes',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const InformacoesJuridicasRoute = InformacoesJuridicasRouteImport.update({
-  id: '/informacoes-juridicas',
-  path: '/informacoes-juridicas',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DadosProfissionaisRoute = DadosProfissionaisRouteImport.update({
-  id: '/dados-profissionais',
-  path: '/dados-profissionais',
+const ContatoRoute = ContatoRouteImport.update({
+  id: '/contato',
+  path: '/contato',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AvisoLegalRoute = AvisoLegalRouteImport.update({
   id: '/aviso-legal',
   path: '/aviso-legal',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ArtigosRoute = ArtigosRouteImport.update({
-  id: '/artigos',
-  path: '/artigos',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AreasDeAtuacaoRoute = AreasDeAtuacaoRouteImport.update({
@@ -68,22 +50,16 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/areas-de-atuacao': typeof AreasDeAtuacaoRoute
-  '/artigos': typeof ArtigosRoute
   '/aviso-legal': typeof AvisoLegalRoute
-  '/dados-profissionais': typeof DadosProfissionaisRoute
-  '/informacoes-juridicas': typeof InformacoesJuridicasRoute
-  '/perguntas-frequentes': typeof PerguntasFrequentesRoute
+  '/contato': typeof ContatoRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/sobre': typeof SobreRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/areas-de-atuacao': typeof AreasDeAtuacaoRoute
-  '/artigos': typeof ArtigosRoute
   '/aviso-legal': typeof AvisoLegalRoute
-  '/dados-profissionais': typeof DadosProfissionaisRoute
-  '/informacoes-juridicas': typeof InformacoesJuridicasRoute
-  '/perguntas-frequentes': typeof PerguntasFrequentesRoute
+  '/contato': typeof ContatoRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/sobre': typeof SobreRoute
 }
@@ -91,11 +67,8 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/areas-de-atuacao': typeof AreasDeAtuacaoRoute
-  '/artigos': typeof ArtigosRoute
   '/aviso-legal': typeof AvisoLegalRoute
-  '/dados-profissionais': typeof DadosProfissionaisRoute
-  '/informacoes-juridicas': typeof InformacoesJuridicasRoute
-  '/perguntas-frequentes': typeof PerguntasFrequentesRoute
+  '/contato': typeof ContatoRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/sobre': typeof SobreRoute
 }
@@ -104,33 +77,24 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/areas-de-atuacao'
-    | '/artigos'
     | '/aviso-legal'
-    | '/dados-profissionais'
-    | '/informacoes-juridicas'
-    | '/perguntas-frequentes'
+    | '/contato'
     | '/politica-de-privacidade'
     | '/sobre'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/areas-de-atuacao'
-    | '/artigos'
     | '/aviso-legal'
-    | '/dados-profissionais'
-    | '/informacoes-juridicas'
-    | '/perguntas-frequentes'
+    | '/contato'
     | '/politica-de-privacidade'
     | '/sobre'
   id:
     | '__root__'
     | '/'
     | '/areas-de-atuacao'
-    | '/artigos'
     | '/aviso-legal'
-    | '/dados-profissionais'
-    | '/informacoes-juridicas'
-    | '/perguntas-frequentes'
+    | '/contato'
     | '/politica-de-privacidade'
     | '/sobre'
   fileRoutesById: FileRoutesById
@@ -138,11 +102,8 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AreasDeAtuacaoRoute: typeof AreasDeAtuacaoRoute
-  ArtigosRoute: typeof ArtigosRoute
   AvisoLegalRoute: typeof AvisoLegalRoute
-  DadosProfissionaisRoute: typeof DadosProfissionaisRoute
-  InformacoesJuridicasRoute: typeof InformacoesJuridicasRoute
-  PerguntasFrequentesRoute: typeof PerguntasFrequentesRoute
+  ContatoRoute: typeof ContatoRoute
   PoliticaDePrivacidadeRoute: typeof PoliticaDePrivacidadeRoute
   SobreRoute: typeof SobreRoute
 }
@@ -163,25 +124,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PoliticaDePrivacidadeRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/perguntas-frequentes': {
-      id: '/perguntas-frequentes'
-      path: '/perguntas-frequentes'
-      fullPath: '/perguntas-frequentes'
-      preLoaderRoute: typeof PerguntasFrequentesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/informacoes-juridicas': {
-      id: '/informacoes-juridicas'
-      path: '/informacoes-juridicas'
-      fullPath: '/informacoes-juridicas'
-      preLoaderRoute: typeof InformacoesJuridicasRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/dados-profissionais': {
-      id: '/dados-profissionais'
-      path: '/dados-profissionais'
-      fullPath: '/dados-profissionais'
-      preLoaderRoute: typeof DadosProfissionaisRouteImport
+    '/contato': {
+      id: '/contato'
+      path: '/contato'
+      fullPath: '/contato'
+      preLoaderRoute: typeof ContatoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/aviso-legal': {
@@ -189,13 +136,6 @@ declare module '@tanstack/react-router' {
       path: '/aviso-legal'
       fullPath: '/aviso-legal'
       preLoaderRoute: typeof AvisoLegalRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/artigos': {
-      id: '/artigos'
-      path: '/artigos'
-      fullPath: '/artigos'
-      preLoaderRoute: typeof ArtigosRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/areas-de-atuacao': {
@@ -218,24 +158,11 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AreasDeAtuacaoRoute: AreasDeAtuacaoRoute,
-  ArtigosRoute: ArtigosRoute,
   AvisoLegalRoute: AvisoLegalRoute,
-  DadosProfissionaisRoute: DadosProfissionaisRoute,
-  InformacoesJuridicasRoute: InformacoesJuridicasRoute,
-  PerguntasFrequentesRoute: PerguntasFrequentesRoute,
+  ContatoRoute: ContatoRoute,
   PoliticaDePrivacidadeRoute: PoliticaDePrivacidadeRoute,
   SobreRoute: SobreRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

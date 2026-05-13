@@ -4,7 +4,7 @@ import { PageHeader } from "@/components/page-header";
 export const Route = createFileRoute("/areas-de-atuacao")({
   head: () => ({
     meta: [
-      { title: "Áreas de atuação | Dra. [Nome da Advogada]" },
+      { title: "Áreas de atuação | Dra. Rafaella Borges" },
       {
         name: "description",
         content:
