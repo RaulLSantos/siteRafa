@@ -6,10 +6,7 @@ const NAV = [
   { to: "/", label: "Início" },
   { to: "/sobre", label: "Sobre" },
   { to: "/areas-de-atuacao", label: "Áreas de Atuação" },
-  { to: "/informacoes-juridicas", label: "Informações Jurídicas" },
-  { to: "/artigos", label: "Artigos" },
-  { to: "/perguntas-frequentes", label: "Perguntas Frequentes" },
-  { to: "/dados-profissionais", label: "Dados Profissionais" },
+  { to: "/contato", label: "Contato" },
 ] as const;
 
 export function SiteHeader() {
@@ -19,7 +16,7 @@ export function SiteHeader() {
     <header className="sticky top-0 z-40 border-b border-border bg-background/85 backdrop-blur-sm">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
         <Link to="/" className="group flex flex-col leading-tight">
-          <span className="font-serif text-lg text-primary">Dra. [Nome da Advogada]</span>
+          <span className="font-serif text-lg text-primary">Dra. Rafaella Borges</span>
           <span className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
             Advocacia
           </span>
