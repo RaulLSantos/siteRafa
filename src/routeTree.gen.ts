@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SobreRouteImport } from './routes/sobre'
+import { Route as PoliticaDePrivacidadeRouteImport } from './routes/politica-de-privacidade'
 import { Route as PerguntasFrequentesRouteImport } from './routes/perguntas-frequentes'
 import { Route as InformacoesJuridicasRouteImport } from './routes/informacoes-juridicas'
 import { Route as DadosProfissionaisRouteImport } from './routes/dados-profissionais'
@@ -21,6 +22,11 @@ import { Route as IndexRouteImport } from './routes/index'
 const SobreRoute = SobreRouteImport.update({
   id: '/sobre',
   path: '/sobre',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PoliticaDePrivacidadeRoute = PoliticaDePrivacidadeRouteImport.update({
+  id: '/politica-de-privacidade',
+  path: '/politica-de-privacidade',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PerguntasFrequentesRoute = PerguntasFrequentesRouteImport.update({
@@ -67,6 +73,7 @@ export interface FileRoutesByFullPath {
   '/dados-profissionais': typeof DadosProfissionaisRoute
   '/informacoes-juridicas': typeof InformacoesJuridicasRoute
   '/perguntas-frequentes': typeof PerguntasFrequentesRoute
+  '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/sobre': typeof SobreRoute
 }
 export interface FileRoutesByTo {
@@ -77,6 +84,7 @@ export interface FileRoutesByTo {
   '/dados-profissionais': typeof DadosProfissionaisRoute
   '/informacoes-juridicas': typeof InformacoesJuridicasRoute
   '/perguntas-frequentes': typeof PerguntasFrequentesRoute
+  '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/sobre': typeof SobreRoute
 }
 export interface FileRoutesById {
@@ -88,6 +96,7 @@ export interface FileRoutesById {
   '/dados-profissionais': typeof DadosProfissionaisRoute
   '/informacoes-juridicas': typeof InformacoesJuridicasRoute
   '/perguntas-frequentes': typeof PerguntasFrequentesRoute
+  '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/sobre': typeof SobreRoute
 }
 export interface FileRouteTypes {
@@ -100,6 +109,7 @@ export interface FileRouteTypes {
     | '/dados-profissionais'
     | '/informacoes-juridicas'
     | '/perguntas-frequentes'
+    | '/politica-de-privacidade'
     | '/sobre'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -110,6 +120,7 @@ export interface FileRouteTypes {
     | '/dados-profissionais'
     | '/informacoes-juridicas'
     | '/perguntas-frequentes'
+    | '/politica-de-privacidade'
     | '/sobre'
   id:
     | '__root__'
@@ -120,6 +131,7 @@ export interface FileRouteTypes {
     | '/dados-profissionais'
     | '/informacoes-juridicas'
     | '/perguntas-frequentes'
+    | '/politica-de-privacidade'
     | '/sobre'
   fileRoutesById: FileRoutesById
 }
@@ -131,6 +143,7 @@ export interface RootRouteChildren {
   DadosProfissionaisRoute: typeof DadosProfissionaisRoute
   InformacoesJuridicasRoute: typeof InformacoesJuridicasRoute
   PerguntasFrequentesRoute: typeof PerguntasFrequentesRoute
+  PoliticaDePrivacidadeRoute: typeof PoliticaDePrivacidadeRoute
   SobreRoute: typeof SobreRoute
 }
 
@@ -141,6 +154,13 @@ declare module '@tanstack/react-router' {
       path: '/sobre'
       fullPath: '/sobre'
       preLoaderRoute: typeof SobreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/politica-de-privacidade': {
+      id: '/politica-de-privacidade'
+      path: '/politica-de-privacidade'
+      fullPath: '/politica-de-privacidade'
+      preLoaderRoute: typeof PoliticaDePrivacidadeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/perguntas-frequentes': {
@@ -203,8 +223,19 @@ const rootRouteChildren: RootRouteChildren = {
   DadosProfissionaisRoute: DadosProfissionaisRoute,
   InformacoesJuridicasRoute: InformacoesJuridicasRoute,
   PerguntasFrequentesRoute: PerguntasFrequentesRoute,
+  PoliticaDePrivacidadeRoute: PoliticaDePrivacidadeRoute,
   SobreRoute: SobreRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
