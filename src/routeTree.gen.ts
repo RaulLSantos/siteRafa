@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SobreRouteImport } from './routes/sobre'
+import { Route as PerguntasFrequentesRouteImport } from './routes/perguntas-frequentes'
 import { Route as InformacoesJuridicasRouteImport } from './routes/informacoes-juridicas'
 import { Route as ArtigosRouteImport } from './routes/artigos'
 import { Route as AreasDeAtuacaoRouteImport } from './routes/areas-de-atuacao'
@@ -18,6 +19,11 @@ import { Route as IndexRouteImport } from './routes/index'
 const SobreRoute = SobreRouteImport.update({
   id: '/sobre',
   path: '/sobre',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PerguntasFrequentesRoute = PerguntasFrequentesRouteImport.update({
+  id: '/perguntas-frequentes',
+  path: '/perguntas-frequentes',
   getParentRoute: () => rootRouteImport,
 } as any)
 const InformacoesJuridicasRoute = InformacoesJuridicasRouteImport.update({
@@ -46,6 +52,7 @@ export interface FileRoutesByFullPath {
   '/areas-de-atuacao': typeof AreasDeAtuacaoRoute
   '/artigos': typeof ArtigosRoute
   '/informacoes-juridicas': typeof InformacoesJuridicasRoute
+  '/perguntas-frequentes': typeof PerguntasFrequentesRoute
   '/sobre': typeof SobreRoute
 }
 export interface FileRoutesByTo {
@@ -53,6 +60,7 @@ export interface FileRoutesByTo {
   '/areas-de-atuacao': typeof AreasDeAtuacaoRoute
   '/artigos': typeof ArtigosRoute
   '/informacoes-juridicas': typeof InformacoesJuridicasRoute
+  '/perguntas-frequentes': typeof PerguntasFrequentesRoute
   '/sobre': typeof SobreRoute
 }
 export interface FileRoutesById {
@@ -61,6 +69,7 @@ export interface FileRoutesById {
   '/areas-de-atuacao': typeof AreasDeAtuacaoRoute
   '/artigos': typeof ArtigosRoute
   '/informacoes-juridicas': typeof InformacoesJuridicasRoute
+  '/perguntas-frequentes': typeof PerguntasFrequentesRoute
   '/sobre': typeof SobreRoute
 }
 export interface FileRouteTypes {
@@ -70,6 +79,7 @@ export interface FileRouteTypes {
     | '/areas-de-atuacao'
     | '/artigos'
     | '/informacoes-juridicas'
+    | '/perguntas-frequentes'
     | '/sobre'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -77,6 +87,7 @@ export interface FileRouteTypes {
     | '/areas-de-atuacao'
     | '/artigos'
     | '/informacoes-juridicas'
+    | '/perguntas-frequentes'
     | '/sobre'
   id:
     | '__root__'
@@ -84,6 +95,7 @@ export interface FileRouteTypes {
     | '/areas-de-atuacao'
     | '/artigos'
     | '/informacoes-juridicas'
+    | '/perguntas-frequentes'
     | '/sobre'
   fileRoutesById: FileRoutesById
 }
@@ -92,6 +104,7 @@ export interface RootRouteChildren {
   AreasDeAtuacaoRoute: typeof AreasDeAtuacaoRoute
   ArtigosRoute: typeof ArtigosRoute
   InformacoesJuridicasRoute: typeof InformacoesJuridicasRoute
+  PerguntasFrequentesRoute: typeof PerguntasFrequentesRoute
   SobreRoute: typeof SobreRoute
 }
 
@@ -102,6 +115,13 @@ declare module '@tanstack/react-router' {
       path: '/sobre'
       fullPath: '/sobre'
       preLoaderRoute: typeof SobreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/perguntas-frequentes': {
+      id: '/perguntas-frequentes'
+      path: '/perguntas-frequentes'
+      fullPath: '/perguntas-frequentes'
+      preLoaderRoute: typeof PerguntasFrequentesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/informacoes-juridicas': {
@@ -140,6 +160,7 @@ const rootRouteChildren: RootRouteChildren = {
   AreasDeAtuacaoRoute: AreasDeAtuacaoRoute,
   ArtigosRoute: ArtigosRoute,
   InformacoesJuridicasRoute: InformacoesJuridicasRoute,
+  PerguntasFrequentesRoute: PerguntasFrequentesRoute,
   SobreRoute: SobreRoute,
 }
 export const routeTree = rootRouteImport
