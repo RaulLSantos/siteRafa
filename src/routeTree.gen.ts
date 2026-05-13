@@ -10,11 +10,17 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SobreRouteImport } from './routes/sobre'
+import { Route as AreasDeAtuacaoRouteImport } from './routes/areas-de-atuacao'
 import { Route as IndexRouteImport } from './routes/index'
 
 const SobreRoute = SobreRouteImport.update({
   id: '/sobre',
   path: '/sobre',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AreasDeAtuacaoRoute = AreasDeAtuacaoRouteImport.update({
+  id: '/areas-de-atuacao',
+  path: '/areas-de-atuacao',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -25,27 +31,31 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/areas-de-atuacao': typeof AreasDeAtuacaoRoute
   '/sobre': typeof SobreRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/areas-de-atuacao': typeof AreasDeAtuacaoRoute
   '/sobre': typeof SobreRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/areas-de-atuacao': typeof AreasDeAtuacaoRoute
   '/sobre': typeof SobreRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/sobre'
+  fullPaths: '/' | '/areas-de-atuacao' | '/sobre'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/sobre'
-  id: '__root__' | '/' | '/sobre'
+  to: '/' | '/areas-de-atuacao' | '/sobre'
+  id: '__root__' | '/' | '/areas-de-atuacao' | '/sobre'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AreasDeAtuacaoRoute: typeof AreasDeAtuacaoRoute
   SobreRoute: typeof SobreRoute
 }
 
@@ -56,6 +66,13 @@ declare module '@tanstack/react-router' {
       path: '/sobre'
       fullPath: '/sobre'
       preLoaderRoute: typeof SobreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/areas-de-atuacao': {
+      id: '/areas-de-atuacao'
+      path: '/areas-de-atuacao'
+      fullPath: '/areas-de-atuacao'
+      preLoaderRoute: typeof AreasDeAtuacaoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -70,6 +87,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AreasDeAtuacaoRoute: AreasDeAtuacaoRoute,
   SobreRoute: SobreRoute,
 }
 export const routeTree = rootRouteImport
