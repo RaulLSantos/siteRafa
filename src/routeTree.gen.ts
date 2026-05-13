@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SobreRouteImport } from './routes/sobre'
 import { Route as InformacoesJuridicasRouteImport } from './routes/informacoes-juridicas'
+import { Route as ArtigosRouteImport } from './routes/artigos'
 import { Route as AreasDeAtuacaoRouteImport } from './routes/areas-de-atuacao'
 import { Route as IndexRouteImport } from './routes/index'
 
@@ -22,6 +23,11 @@ const SobreRoute = SobreRouteImport.update({
 const InformacoesJuridicasRoute = InformacoesJuridicasRouteImport.update({
   id: '/informacoes-juridicas',
   path: '/informacoes-juridicas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ArtigosRoute = ArtigosRouteImport.update({
+  id: '/artigos',
+  path: '/artigos',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AreasDeAtuacaoRoute = AreasDeAtuacaoRouteImport.update({
@@ -38,12 +44,14 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/areas-de-atuacao': typeof AreasDeAtuacaoRoute
+  '/artigos': typeof ArtigosRoute
   '/informacoes-juridicas': typeof InformacoesJuridicasRoute
   '/sobre': typeof SobreRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/areas-de-atuacao': typeof AreasDeAtuacaoRoute
+  '/artigos': typeof ArtigosRoute
   '/informacoes-juridicas': typeof InformacoesJuridicasRoute
   '/sobre': typeof SobreRoute
 }
@@ -51,18 +59,30 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/areas-de-atuacao': typeof AreasDeAtuacaoRoute
+  '/artigos': typeof ArtigosRoute
   '/informacoes-juridicas': typeof InformacoesJuridicasRoute
   '/sobre': typeof SobreRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/areas-de-atuacao' | '/informacoes-juridicas' | '/sobre'
+  fullPaths:
+    | '/'
+    | '/areas-de-atuacao'
+    | '/artigos'
+    | '/informacoes-juridicas'
+    | '/sobre'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/areas-de-atuacao' | '/informacoes-juridicas' | '/sobre'
+  to:
+    | '/'
+    | '/areas-de-atuacao'
+    | '/artigos'
+    | '/informacoes-juridicas'
+    | '/sobre'
   id:
     | '__root__'
     | '/'
     | '/areas-de-atuacao'
+    | '/artigos'
     | '/informacoes-juridicas'
     | '/sobre'
   fileRoutesById: FileRoutesById
@@ -70,6 +90,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AreasDeAtuacaoRoute: typeof AreasDeAtuacaoRoute
+  ArtigosRoute: typeof ArtigosRoute
   InformacoesJuridicasRoute: typeof InformacoesJuridicasRoute
   SobreRoute: typeof SobreRoute
 }
@@ -88,6 +109,13 @@ declare module '@tanstack/react-router' {
       path: '/informacoes-juridicas'
       fullPath: '/informacoes-juridicas'
       preLoaderRoute: typeof InformacoesJuridicasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/artigos': {
+      id: '/artigos'
+      path: '/artigos'
+      fullPath: '/artigos'
+      preLoaderRoute: typeof ArtigosRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/areas-de-atuacao': {
@@ -110,9 +138,20 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AreasDeAtuacaoRoute: AreasDeAtuacaoRoute,
+  ArtigosRoute: ArtigosRoute,
   InformacoesJuridicasRoute: InformacoesJuridicasRoute,
   SobreRoute: SobreRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
