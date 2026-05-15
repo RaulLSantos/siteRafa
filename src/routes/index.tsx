@@ -16,7 +16,7 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-function Index() {
+function Index(): JSX.Element {
   return (
     <>
       {/* Hero */}
@@ -45,20 +45,20 @@ function Index() {
             </div>
           </div>
 
-          <div className="relative">
+          <aside className="relative" aria-label="Foto profissional">
             <div className="absolute -inset-4 -z-10 rounded-sm bg-secondary/60" />
             <div className="aspect-[4/5] w-full overflow-hidden rounded-sm border border-border bg-muted">
-              <div className="flex h-full w-full items-center justify-center">
+              <figure className="flex h-full w-full items-center justify-center">
                 <div className="text-center">
                   <div className="mx-auto h-px w-12 bg-accent" />
                   <p className="mt-4 font-serif text-xl text-primary/70">[Foto profissional]</p>
-                  <p className="mt-1 text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                  <figcaption className="mt-1 text-xs uppercase tracking-[0.2em] text-muted-foreground">
                     Espaço reservado
-                  </p>
+                  </figcaption>
                 </div>
-              </div>
+              </figure>
             </div>
-          </div>
+          </aside>
         </div>
       </section>
 
@@ -82,15 +82,22 @@ function Index() {
       <section>
         <div className="mx-auto max-w-6xl px-6 py-20 md:py-24">
           <div className="grid gap-10 md:grid-cols-3">
-            {[
-              { t: "Ética", d: "Compromisso com os princípios e deveres da advocacia em cada orientação prestada." },
-              { t: "Clareza", d: "Comunicação objetiva e acessível, sem excessos técnicos desnecessários." },
-              { t: "Discrição", d: "Respeito ao sigilo profissional e à individualidade de cada situação." },
-            ].map((p) => (
-              <div key={p.t} className="border-t border-border pt-6">
-                <p className="font-serif text-xl text-primary">{p.t}</p>
+            {{
+              t: "Ética",
+              d: "Compromisso com os princípios e deveres da advocacia em cada orientação prestada.",
+            },
+            {
+              t: "Clareza",
+              d: "Comunicação objetiva e acessível, sem excessos técnicos desnecessários.",
+            },
+            {
+              t: "Discrição",
+              d: "Respeito ao sigilo profissional e à individualidade de cada situação.",
+            }}.map((p) => (
+              <article key={p.t} className="border-t border-border pt-6" aria-labelledby={`pillar-${p.t}`}>
+                <p id={`pillar-${p.t}`} className="font-serif text-xl text-primary">{p.t}</p>
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{p.d}</p>
-              </div>
+              </article>
             ))}
           </div>
         </div>

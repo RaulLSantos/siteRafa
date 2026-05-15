@@ -1,16 +1,17 @@
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+﻿import React from "react"
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import {
   Outlet,
   Link,
-  createRootRouteWithContext,
+  createRootRoute,
   useRouter,
   HeadContent,
   Scripts,
-} from "@tanstack/react-router";
+} from "@tanstack/react-router"
 
-import appCss from "../styles.css?url";
-import { SiteHeader } from "@/components/site-header";
-import { SiteFooter } from "@/components/site-footer";
+import appCss from "../styles.css?url"
+import { SiteHeader } from "@/components/site-header"
+import { SiteFooter } from "@/components/site-footer"
 
 function NotFoundComponent() {
   return (
@@ -31,27 +32,25 @@ function NotFoundComponent() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
 function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
-  console.error(error);
-  const router = useRouter();
+  console.error(error)
+  const router = useRouter()
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
-        <h1 className="text-xl font-semibold tracking-tight text-foreground">
-          This page didn't load
-        </h1>
+        <h1 className="text-xl font-semibold tracking-tight text-foreground">This page didn't load</h1>
         <p className="mt-2 text-sm text-muted-foreground">
           Something went wrong on our end. You can try refreshing or head back home.
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <button
             onClick={() => {
-              router.invalidate();
-              reset();
+              router.invalidate()
+              reset()
             }}
             className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
           >
@@ -66,10 +65,10 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
+export const Route = createRootRoute({
   head: () => ({
     meta: [
       { charSet: "utf-8" },
@@ -84,8 +83,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:title", content: "Dra. [Nome da Advogada] | Advocacia Individual em [Cidade/UF]" },
       {
         property: "og:description",
-        content:
-          "Atuação jurídica individual com responsabilidade, ética e clareza nas áreas de Direito de Família, Previdenciário e Cível.",
+        content: "Atuação jurídica individual com responsabilidade, ética e clareza nas áreas de Direito de Família, Previdenciário e Cível.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
@@ -93,8 +91,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "description", content: "A professional website showcasing an individual lawyer's expertise, ethics, and areas of practice." },
       { property: "og:description", content: "A professional website showcasing an individual lawyer's expertise, ethics, and areas of practice." },
       { name: "twitter:description", content: "A professional website showcasing an individual lawyer's expertise, ethics, and areas of practice." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/f854a483-ca49-48f9-88c2-ed5f3578fb81/id-preview-b5077802--c6943117-dafb-455d-bd88-2b79208db8ee.lovable.app-1778633260585.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/f854a483-ca49-48f9-88c2-ed5f3578fb81/id-preview-b5077802--c6943117-dafb-455d-bd88-2b79208db8ee.lovable.app-1778633260585.png" },
     ],
     links: [
       {
@@ -113,7 +109,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
   errorComponent: ErrorComponent,
-});
+})
 
 function RootShell({ children }: { children: React.ReactNode }) {
   return (
@@ -126,11 +122,11 @@ function RootShell({ children }: { children: React.ReactNode }) {
         <Scripts />
       </body>
     </html>
-  );
+  )
 }
 
 function RootComponent() {
-  const { queryClient } = Route.useRouteContext();
+  const queryClient = new QueryClient()
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -142,5 +138,5 @@ function RootComponent() {
         <SiteFooter />
       </div>
     </QueryClientProvider>
-  );
+  )
 }

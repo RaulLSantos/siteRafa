@@ -25,12 +25,20 @@ export const Route = createFileRoute("/contato")({
   component: ContatoPage,
 });
 
-const DADOS = [
+type DataItem = {
+  l: string;
+  v: string;
+  href?: string;
+};
+
+const PHONE_HREF = `tel:${PHONE_DISPLAY.replace(/\D/g, "")}`;
+
+const DADOS: DataItem[] = [
   { l: "Nome", v: "Dra. Rafaella Borges" },
   { l: "Inscrição", v: OAB },
   { l: "Cidade / UF", v: "Cascavel — Paraná" },
   { l: "E-mail profissional", v: EMAIL, href: `mailto:${EMAIL}` },
-  { l: "Telefone / WhatsApp", v: PHONE_DISPLAY },
+  { l: "Telefone / WhatsApp", v: PHONE_DISPLAY, href: PHONE_HREF },
   { l: "Endereço", v: ADDRESS },
 ];
 
