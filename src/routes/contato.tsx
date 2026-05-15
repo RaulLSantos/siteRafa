@@ -9,19 +9,16 @@ import {
   OAB,
   PHONE_DISPLAY,
 } from "@/lib/contact";
+import { pageMeta } from "@/lib/seo";
 
 export const Route = createFileRoute("/contato")({
-  head: () => ({
-    meta: [
-      { title: "Contato | Dra. Rafaella Borges" },
-      {
-        name: "description",
-        content:
-          "Informações de contato profissional da Dra. Rafaella Borges em Cascavel, Paraná.",
-      },
-    ],
-    links: [{ rel: "canonical", href: "/contato" }],
-  }),
+  head: () =>
+    pageMeta({
+      title: "Contato | Dra. Rafaella Borges",
+      description:
+        "Entre em contato com a Dra. Rafaella Borges em Cascavel/PR por WhatsApp, e-mail, telefone ou Instagram.",
+      path: "/contato",
+    }),
   component: ContatoPage,
 });
 
@@ -29,9 +26,11 @@ type DataItem = {
   l: string;
   v: string;
   href?: string;
+  external?: boolean;
 };
 
 const PHONE_HREF = `tel:${PHONE_DISPLAY.replace(/\D/g, "")}`;
+const INSTAGRAM_URL = "https://www.instagram.com/rafaellaborges.adv/";
 
 const DADOS: DataItem[] = [
   { l: "Nome", v: "Dra. Rafaella Borges" },
@@ -39,6 +38,7 @@ const DADOS: DataItem[] = [
   { l: "Cidade / UF", v: "Cascavel — Paraná" },
   { l: "E-mail profissional", v: EMAIL, href: `mailto:${EMAIL}` },
   { l: "Telefone / WhatsApp", v: PHONE_DISPLAY, href: PHONE_HREF },
+  { l: "Instagram", v: "@rafaellaborges.adv", href: INSTAGRAM_URL, external: true },
   { l: "Endereço", v: ADDRESS },
 ];
 
@@ -51,21 +51,26 @@ function ContatoPage() {
         intro="Canais profissionais para contato e localização do escritório."
       />
 
-      <section className="mx-auto max-w-5xl px-6 py-16 md:py-20">
-        <div className="grid gap-12 md:grid-cols-2 md:gap-16">
+      <section className="mx-auto max-w-5xl px-5 py-10 sm:px-6 md:py-12">
+        <div className="grid gap-10 md:grid-cols-[0.95fr_1.05fr] md:gap-14">
           <div>
             <dl className="divide-y divide-border border-y border-border">
               {DADOS.map((d) => (
                 <div
                   key={d.l}
-                  className="grid grid-cols-1 gap-1 py-5 md:grid-cols-[160px_1fr] md:gap-6"
+                  className="grid grid-cols-1 gap-1 py-4 md:grid-cols-[155px_1fr] md:gap-6 md:py-5"
                 >
-                  <dt className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                  <dt className="text-[11px] font-medium uppercase tracking-[0.2em] text-muted-foreground">
                     {d.l}
                   </dt>
                   <dd className="font-serif text-base text-primary md:text-lg">
                     {"href" in d && d.href ? (
-                      <a href={d.href} className="hover:text-accent">
+                      <a
+                        href={d.href}
+                        target={d.external ? "_blank" : undefined}
+                        rel={d.external ? "noopener noreferrer" : undefined}
+                        className="underline-offset-4 transition-colors hover:text-accent hover:underline"
+                      >
                         {d.v}
                       </a>
                     ) : (
@@ -76,13 +81,16 @@ function ContatoPage() {
               ))}
             </dl>
 
-            <div className="mt-8">
+            <div className="mt-7">
               <WhatsAppButton>Enviar mensagem</WhatsAppButton>
+              <p className="mt-3 text-xs leading-relaxed text-muted-foreground">
+                Resposta em horário comercial.
+              </p>
             </div>
           </div>
 
           <div>
-            <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
+            <p className="text-[11px] font-medium uppercase tracking-[0.2em] text-muted-foreground">
               Localização
             </p>
             <div className="gold-rule mt-3" />
@@ -90,7 +98,7 @@ function ContatoPage() {
               href={MAPS_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-5 block overflow-hidden rounded-sm border border-border transition-colors hover:border-accent/60"
+              className="mt-5 block overflow-hidden rounded-sm border border-border shadow-sm transition-colors hover:border-accent/70"
               aria-label="Abrir endereço no Google Maps"
             >
               <div className="relative aspect-[4/3] w-full bg-muted">
@@ -109,15 +117,15 @@ function ContatoPage() {
               href={MAPS_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-4 inline-block text-sm text-primary underline-offset-4 hover:text-accent hover:underline"
+              className="mt-4 inline-block text-sm font-medium text-primary underline-offset-4 transition-colors hover:text-accent hover:underline"
             >
               Ver localização no Google Maps →
             </a>
-            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{ADDRESS}</p>
+            <p className="mt-3 text-sm leading-7 text-muted-foreground">{ADDRESS}</p>
           </div>
         </div>
 
-        <p className="mt-12 text-xs leading-relaxed text-muted-foreground">
+        <p className="mt-10 border-t border-border pt-5 text-xs leading-6 text-muted-foreground">
           As informações apresentadas têm caráter exclusivamente institucional e informativo.
         </p>
       </section>

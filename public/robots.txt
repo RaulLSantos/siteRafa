@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://raullsantos.github.io/siteRafa/sitemap.xml

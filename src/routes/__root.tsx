@@ -12,6 +12,8 @@ import {
 import appCss from "../styles.css?url"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
+import { FloatingWhatsAppButton } from "@/components/whatsapp-button"
+import { pageMeta, SITE_DESCRIPTION, SITE_TITLE } from "@/lib/seo"
 
 function NotFoundComponent() {
   return (
@@ -73,26 +75,18 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Dra. [Nome da Advogada] | Advocacia Individual em [Cidade/UF]" },
-      {
-        name: "description",
-        content:
-          "Site institucional da Dra. [Nome da Advogada], advogada inscrita na OAB/[UF], com atuação jurídica pautada pela ética, clareza e responsabilidade profissional.",
-      },
-      { name: "author", content: "Dra. [Nome da Advogada]" },
-      { property: "og:title", content: "Dra. [Nome da Advogada] | Advocacia Individual em [Cidade/UF]" },
-      {
-        property: "og:description",
-        content: "Atuação jurídica individual com responsabilidade, ética e clareza nas áreas de Direito de Família, Previdenciário e Cível.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:title", content: "Dra. [Nome da Advogada] | Advocacia Individual em [Cidade/UF]" },
-      { name: "description", content: "A professional website showcasing an individual lawyer's expertise, ethics, and areas of practice." },
-      { property: "og:description", content: "A professional website showcasing an individual lawyer's expertise, ethics, and areas of practice." },
-      { name: "twitter:description", content: "A professional website showcasing an individual lawyer's expertise, ethics, and areas of practice." },
+      ...pageMeta({
+        title: SITE_TITLE,
+        description: SITE_DESCRIPTION,
+        path: "/",
+      }).meta,
     ],
     links: [
+      ...pageMeta({
+        title: SITE_TITLE,
+        description: SITE_DESCRIPTION,
+        path: "/",
+      }).links,
       {
         rel: "stylesheet",
         href: appCss,
@@ -113,7 +107,7 @@ export const Route = createRootRoute({
 
 function RootShell({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="pt-BR">
       <head>
         <HeadContent />
       </head>
@@ -137,6 +131,7 @@ function RootComponent() {
         </main>
         <SiteFooter />
       </div>
+      <FloatingWhatsAppButton />
     </QueryClientProvider>
   )
 }

@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { Menu, X } from "lucide-react";
+import { Mail, MapPin, Menu, Phone, X } from "lucide-react";
+
+import { EMAIL, PHONE_DISPLAY } from "@/lib/contact";
 
 const NAV = [
   { to: "/", label: "Início" },
@@ -13,10 +15,14 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-accent/30 bg-primary text-primary-foreground shadow-sm">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
+    <header className="sticky top-0 z-40 border-b border-accent/25 bg-primary text-primary-foreground shadow-sm">
+
+     
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 sm:px-6 md:py-5">
         <Link to="/" className="group flex flex-col leading-tight">
-          <span className="font-serif text-lg text-primary-foreground">Dra. Rafaella Borges</span>
+          <span className="font-serif text-lg text-primary-foreground transition-colors group-hover:text-accent">
+            Dra. Rafaella Borges
+          </span>
           <span className="text-[11px] uppercase tracking-[0.18em] text-accent">
             Advocacia
           </span>
@@ -30,7 +36,7 @@ export function SiteHeader() {
                   to={item.to}
                   activeOptions={{ exact: item.to === "/" }}
                   activeProps={{ className: "text-accent" }}
-                  className="relative transition-colors hover:text-accent"
+                  className="relative py-2 transition-colors after:absolute after:inset-x-0 after:bottom-0 after:h-px after:origin-center after:scale-x-0 after:bg-accent after:transition-transform hover:text-accent hover:after:scale-x-100"
                 >
                   {item.label}
                 </Link>
@@ -42,7 +48,7 @@ export function SiteHeader() {
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
-          className="lg:hidden text-primary-foreground"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-sm text-primary-foreground transition-colors hover:bg-primary-foreground/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent lg:hidden"
           aria-label="Abrir menu"
         >
           {open ? <X size={22} /> : <Menu size={22} />}
@@ -50,8 +56,8 @@ export function SiteHeader() {
       </div>
 
       {open && (
-        <nav className="lg:hidden border-t border-accent/30 bg-primary">
-          <ul className="mx-auto flex max-w-6xl flex-col px-6 py-4">
+        <nav className="border-t border-accent/25 bg-primary lg:hidden">
+          <ul className="mx-auto flex max-w-6xl flex-col px-5 py-3 sm:px-6">
             {NAV.map((item) => (
               <li key={item.to}>
                 <Link
@@ -59,7 +65,7 @@ export function SiteHeader() {
                   onClick={() => setOpen(false)}
                   activeOptions={{ exact: item.to === "/" }}
                   activeProps={{ className: "text-accent" }}
-                  className="block py-2.5 text-sm text-primary-foreground/85 hover:text-accent"
+                  className="block py-3 text-sm text-primary-foreground/88 transition-colors hover:text-accent"
                 >
                   {item.label}
                 </Link>
