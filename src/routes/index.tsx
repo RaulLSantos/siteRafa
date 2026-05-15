@@ -82,18 +82,20 @@ function Index(): JSX.Element {
       <section>
         <div className="mx-auto max-w-6xl px-6 py-20 md:py-24">
           <div className="grid gap-10 md:grid-cols-3">
-            {{
-              t: "Ética",
-              d: "Compromisso com os princípios e deveres da advocacia em cada orientação prestada.",
-            },
-            {
-              t: "Clareza",
-              d: "Comunicação objetiva e acessível, sem excessos técnicos desnecessários.",
-            },
-            {
-              t: "Discrição",
-              d: "Respeito ao sigilo profissional e à individualidade de cada situação.",
-            }}.map((p) => (
+            {[
+              {
+                t: "Ética",
+                d: "Compromisso com os princípios e deveres da advocacia em cada orientação prestada.",
+              },
+              {
+                t: "Clareza",
+                d: "Comunicação objetiva e acessível, sem excessos técnicos desnecessários.",
+              },
+              {
+                t: "Discrição",
+                d: "Respeito ao sigilo profissional e à individualidade de cada situação.",
+              },
+            ].map((p) => (
               <article key={p.t} className="border-t border-border pt-6" aria-labelledby={`pillar-${p.t}`}>
                 <p id={`pillar-${p.t}`} className="font-serif text-xl text-primary">{p.t}</p>
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{p.d}</p>
