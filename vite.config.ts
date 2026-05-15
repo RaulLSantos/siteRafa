@@ -7,7 +7,8 @@ import react from '@vitejs/plugin-react';
 // For user/org pages (https://username.github.io/), use "/" 
 // For project pages (https://username.github.io/law-ethos-space/), use "/law-ethos-space/"
 export default defineConfig({
-  base: "/siteRafa/",
+    base: "/siteRafa/",
+    plugins: [react()],
   tanstackStart: {
     server: { entry: "server" },
   },
