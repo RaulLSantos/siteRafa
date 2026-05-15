@@ -98,8 +98,8 @@ function ContatoPage() {
               href={MAPS_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-5 block overflow-hidden rounded-sm border border-border shadow-sm transition-colors hover:border-accent/70"
-              aria-label="Abrir endereço no Google Maps"
+              className="group mt-5 block overflow-hidden rounded-sm border border-border shadow-sm transition-colors hover:border-accent/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+              aria-label="Abrir localização no Google Maps"
             >
               <div className="relative aspect-[4/3] w-full bg-muted">
                 <iframe
@@ -107,19 +107,11 @@ function ContatoPage() {
                   title="Mapa do escritório"
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  className="h-full w-full border-0"
-                  allowFullScreen
+                  className="pointer-events-none h-full w-full border-0 transition-transform duration-300 group-hover:scale-[1.01]"
+                  tabIndex={-1}
                 />
-                <span className="pointer-events-none absolute inset-0" />
+                <span className="pointer-events-none absolute inset-0 bg-primary/0 transition-colors group-hover:bg-primary/[0.03]" />
               </div>
-            </a>
-            <a
-              href={MAPS_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-4 inline-block text-sm font-medium text-primary underline-offset-4 transition-colors hover:text-accent hover:underline"
-            >
-              Ver localização no Google Maps →
             </a>
             <p className="mt-3 text-sm leading-7 text-muted-foreground">{ADDRESS}</p>
           </div>
